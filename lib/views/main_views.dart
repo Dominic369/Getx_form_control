@@ -19,6 +19,10 @@ class Main_views extends StatelessWidget {
           appBar: AppBar(
             //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             backgroundColor: Colors.pinkAccent,
+            leading: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
             title: Text(
               "แจ้งเกิดลูกโค",
               style: TextStyle(color: Colors.white),
