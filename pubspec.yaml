@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   dotted_border:
+  cool_alert: ^2.0.1
   cupertino_radio_choice: ^1.0.2
   intl: ^0.17.0
   image_picker: ^1.0.5

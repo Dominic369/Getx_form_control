@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cool_alert/cool_alert.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -445,29 +446,43 @@ class Main_views extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     padding: const EdgeInsets.all(8.0),
-                    child: Column(children: [
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      TextFormField(
-                        controller:
-                            controller.formcontroller.cowMomNameController,
-                        decoration: const InputDecoration(
-                          label: Text('ชื่อแม่โค'),
-                          border: OutlineInputBorder(),
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 15,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      TextFormField(
-                        controller:
-                            controller.formcontroller.cowDadNameController,
-                        decoration: const InputDecoration(
-                            label: Text('ชื่อพ่อโค'),
-                            border: OutlineInputBorder()),
-                      ),
-                    ]),
+                        TextFormField(
+                          controller:
+                              controller.formcontroller.cowMomNameController,
+                          decoration: const InputDecoration(
+                            label: Text('ชื่อแม่โค'),
+                            border: OutlineInputBorder(),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty || value == '') {
+                              return 'กรุณาระบุแม่โค';
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        TextFormField(
+                          controller:
+                              controller.formcontroller.cowDadNameController,
+                          decoration: const InputDecoration(
+                              label: Text('ชื่อพ่อโค'),
+                              border: OutlineInputBorder()),
+                          validator: (value) {
+                            if (value == null || value.isEmpty || value == '') {
+                              return 'กรุณาระบุชื่อพ่อโค';
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 15,
@@ -490,6 +505,12 @@ class Main_views extends StatelessWidget {
                         decoration: const InputDecoration(
                             label: Text('เบอร์ลูกโค (ระบบฟาร์ม)'),
                             border: OutlineInputBorder()),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value == '') {
+                            return 'กรุณาระบุเบอร์ลูกโค';
+                          }
+                          return null;
+                        },
                       ),
                       const SizedBox(
                         height: 15,
@@ -572,6 +593,12 @@ class Main_views extends StatelessWidget {
                         decoration: const InputDecoration(
                             label: Text('ชื่อลูกโค'),
                             border: OutlineInputBorder()),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value == '') {
+                            return 'กรุณาระบุชื่อลูกโค';
+                          }
+                          return null;
+                        },
                       ),
                       const SizedBox(
                         height: 15,
@@ -1289,46 +1316,66 @@ class Main_views extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                      if (controller.formcontroller.formKey.currentState!
+                          .validate()) {
+                        // If the form is valid, display a snackbar. In the real world,
+                        // you'd often call a server or save the information in a database.
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
                             content: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                                'รูปภาพ (path): ${controller.formcontroller.selectedImagePath} '),
-                            Text(
-                                'รูปภาพ (ขนาด): ${controller.formcontroller.selectedImageSize} '),
-                            Text(
-                                'แม่โค: ${controller.formcontroller.cowMomNameController.text} '),
-                            Text(
-                                'พ่อโค: ${controller.formcontroller.cowDadNameController.text} '),
-                            Text(
-                                'เบอร์ลูกโค: ${controller.formcontroller.cowCodeController.text} '),
-                            Text(
-                                'nid: ${controller.formcontroller.nidController.text} '),
-                            Text(
-                                'rfid: ${controller.formcontroller.rfidController.text} '),
-                            Text(
-                                'dpo: ${controller.formcontroller.dpoController.text} '),
-                            Text(
-                                'ชื่อลูกโค: ${controller.formcontroller.cowNameController.text} '),
-                            Text(
-                                'วันเกิดโค: ${controller.formcontroller.dateController.text} '),
-                            Text(
-                                'อายุ: ${controller.formcontroller.age.value} วัน'),
-                            Text('เพศโค: ${controller.formcontroller.cowSex} '),
-                            Text(
-                                'ประเภทโค: ${controller.formcontroller.cowType} '),
-                            Text(
-                                'ข้อมูลสายพันธุ์: ${controller.formcontroller.breed} '),
-                            Text(
-                                'โรงเรือน: ${controller.formcontroller.house} '),
-                            Text(
-                                'ฝูง: ${controller.formcontroller.proportion} '),
-                          ],
-                        )),
-                      );
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                    'รูปภาพ (path): ${controller.formcontroller.selectedImagePath} '),
+                                Text(
+                                    'รูปภาพ (ขนาด): ${controller.formcontroller.selectedImageSize} '),
+                                Text(
+                                    'แม่โค: ${controller.formcontroller.cowMomNameController.text} '),
+                                Text(
+                                    'พ่อโค: ${controller.formcontroller.cowDadNameController.text} '),
+                                Text(
+                                    'เบอร์ลูกโค: ${controller.formcontroller.cowCodeController.text} '),
+                                Text(
+                                    'nid: ${controller.formcontroller.nidController.text} '),
+                                Text(
+                                    'rfid: ${controller.formcontroller.rfidController.text} '),
+                                Text(
+                                    'dpo: ${controller.formcontroller.dpoController.text} '),
+                                Text(
+                                    'ชื่อลูกโค: ${controller.formcontroller.cowNameController.text} '),
+                                Text(
+                                    'วันเกิดโค: ${controller.formcontroller.dateController.text} '),
+                                Text(
+                                    'อายุ: ${controller.formcontroller.age.value} วัน'),
+                                Text(
+                                    'เพศโค: ${controller.formcontroller.cowSex} '),
+                                Text(
+                                    'ประเภทโค: ${controller.formcontroller.cowType} '),
+                                Text(
+                                    'ข้อมูลสายพันธุ์: ${controller.formcontroller.breed} '),
+                                Text(
+                                    'โรงเรือน: ${controller.formcontroller.house} '),
+                                Text(
+                                    'ฝูง: ${controller.formcontroller.proportion} '),
+                              ],
+                            ),
+                          ),
+                        );
+                        CoolAlert.show(
+                          context: context,
+                          backgroundColor: Colors.greenAccent[100]!,
+                          type: CoolAlertType.success,
+                          title: 'บันทึกข้อมูลเรียบร้อย',
+                        );
+                      } else {
+                        CoolAlert.show(
+                          context: context,
+                          backgroundColor: Colors.redAccent[100]!,
+                          type: CoolAlertType.error,
+                          title: 'กรุณากรอกข้อมูลให้ครบ',
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         //primary: Colors.pinkAccent,
