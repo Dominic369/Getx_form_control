@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:test_flutter_3/controllers/form_controller.dart';
 
+// ignore: camel_case_types
 class Main_controller extends GetxController {
   var isVisible = false.obs;
   var isVisibleImage = false.obs;
+  var breedText = 'สัดส่วน'.obs;
   TextEditingController textarea1 = TextEditingController();
   TextEditingController textarea2 = TextEditingController();
 
@@ -19,28 +21,39 @@ class Main_controller extends GetxController {
     update();
   }
 
+  void changeBreed(var breed) {
+    if (breed == '5 สายพันธุ์') {
+      breedText.value = '5 สายพันธุ์';
+      setText();
+    } else if (breed == '8 สายพันธุ์') {
+      breedText.value = '8 สายพันธุ์';
+      setText();
+    } else if (breed == 'สัดส่วน') {
+      breedText.value = 'สัดส่วน';
+      resetText();
+    }
+
+    update();
+  }
+
   void setText() {
-    textarea1.text = "ไม่ทราบสายพันธุ์"; //set Text
-    textarea2.text = "100 + (0/512)"; //set Text
-    formcontroller.breed.value = 100;
+    textarea1.text = "โคดำ"; //set Text
+    textarea2.text = "100"; //set Text
+    formcontroller.breed.value = '100.0';
     update();
   }
 
   void resetText() {
-    textarea1.text = ""; //default text
-    textarea2.text = ""; //default text
-    formcontroller.breed.value = 0;
+    textarea1.text = "ไม่ทราบสายพันธุ์"; //default text
+    textarea2.text = "100"; //default text
+    formcontroller.breed.value = '100.0';
     update();
   }
 
   void changeStatus() {
     isVisible.value = !isVisible.value;
-    print('decrementCounter2 : $isVisible');
+    //print('isVisible : $isVisible');
     update();
-  }
-
-  void onInit() {
-    super.onInit();
   }
 
   void getImage(ImageSource imageSource) async {
@@ -49,11 +62,7 @@ class Main_controller extends GetxController {
       changeImageStatus();
       formcontroller.selectedImagePath.value = pickedFile.path;
       formcontroller.selectedImageSize.value =
-          ((File(formcontroller.selectedImagePath.value)).lengthSync() /
-                      1024 /
-                      1024)
-                  .toStringAsFixed(2) +
-              " Mb";
+          "${((File(formcontroller.selectedImagePath.value)).lengthSync() / 1024 / 1024).toStringAsFixed(2)} Mb";
     } else {
       formcontroller.selectedImagePath.value = '';
     }
@@ -67,7 +76,17 @@ class Main_controller extends GetxController {
 
   void changeImageStatus() {
     isVisibleImage.value = !isVisibleImage.value;
-    print('isVisibleImage : $isVisibleImage');
+    //print('isVisibleImage : $isVisibleImage');
+    update();
+  }
+
+  void changeCowSex(var cowsex) {
+    if (cowsex == "male") {
+      formcontroller.cowSex.value = 'male';
+    } else if (cowsex == "female") {
+      formcontroller.cowSex.value = 'female';
+    }
+
     update();
   }
 

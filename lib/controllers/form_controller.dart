@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:test_flutter_3/models/form_model.dart';
 
+// ignore: camel_case_types
 class Form_controller extends GetxController {
   final formKey = GlobalKey<FormState>();
 

@@ -12,7 +12,7 @@ class FormModel {
   int age;
   String cowSex;
   String cowType;
-  int breed;
+  String breed;
   String proportion;
   String house;
   String masses;
@@ -29,9 +29,9 @@ class FormModel {
     this.cowName = '',
     this.date = '',
     this.age = 0,
-    this.cowSex = 'male',
+    this.cowSex = 'female',
     this.cowType = '',
-    this.breed = 0,
+    this.breed = '100.0',
     this.proportion = '',
     this.house = '',
     this.masses = '',
