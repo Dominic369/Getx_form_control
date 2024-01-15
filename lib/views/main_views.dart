@@ -1367,6 +1367,7 @@ class Main_views extends StatelessWidget {
                           backgroundColor: Colors.greenAccent[100]!,
                           type: CoolAlertType.success,
                           title: 'บันทึกข้อมูลเรียบร้อย',
+                          confirmBtnColor: Colors.greenAccent,
                         );
                       } else {
                         CoolAlert.show(
@@ -1374,6 +1375,7 @@ class Main_views extends StatelessWidget {
                           backgroundColor: Colors.redAccent[100]!,
                           type: CoolAlertType.error,
                           title: 'กรุณากรอกข้อมูลให้ครบ',
+                          confirmBtnColor: Colors.redAccent,
                         );
                       }
                     },
