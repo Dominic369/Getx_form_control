@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:test_flutter_3/controllers/main_controller.dart';
+import 'package:test_flutter_3/models/form_label_model.dart';
 
 class InputMoreCowCode extends StatelessWidget {
   const InputMoreCowCode({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Main_controller>(
-      init: Main_controller(),
-      dispose: (state) {},
+    return GetBuilder<MainController>(
+      init: MainController(),
+      dispose: (state) {
+        state.controller?.formController.onClose();
+      },
       builder: (controller) {
         return Column(
           children: [
             ElevatedButton(
-              onPressed: controller.formcontroller.changeStatus,
+              onPressed: controller.formController.changeStatus,
               style: ElevatedButton.styleFrom(
-                  //primary: Colors.green,
-                  backgroundColor: Colors.green,
-                  shape: BeveledRectangleBorder(
-                      borderRadius: BorderRadius.circular(5))),
+                //primary: Colors.green,
+                backgroundColor: Colors.green,
+                shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
               // padding: const EdgeInsets.all(0.0),
               child: Container(
                 padding: const EdgeInsets.only(top: 20.0, bottom: 20),
@@ -30,18 +35,23 @@ class InputMoreCowCode extends StatelessWidget {
                       margin: const EdgeInsets.only(left: 1.0),
                       child: const Text(
                         "เบอร์ลูกโคเพิ่มเติม",
-                        style: TextStyle(fontSize: 15.0, color: Colors.white),
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     Align(
                       alignment: Alignment.centerRight,
-                      child: controller.formcontroller.isVisible.value == false
+                      child: controller.formController.isVisible.value == false
                           ? const Icon(
                               Icons.arrow_drop_up,
                               color: Colors.white,
                             )
-                          : const Icon(Icons.arrow_drop_down,
-                              color: Colors.white),
+                          : const Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.white,
+                            ),
                     )
                   ],
                 ),
@@ -51,29 +61,35 @@ class InputMoreCowCode extends StatelessWidget {
               height: 15,
             ),
             Visibility(
-              visible: controller.formcontroller.isVisible.value,
+              visible: controller.formController.isVisible.value,
               child: Column(
                 children: [
                   TextFormField(
-                    controller: controller.formcontroller.nidController,
+                    controller: controller.formController.nidController,
                     decoration: const InputDecoration(
-                        label: Text('nid'), border: OutlineInputBorder()),
+                      label: Text(labelNid),
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                   const SizedBox(
                     height: 15,
                   ),
                   TextFormField(
-                    controller: controller.formcontroller.rfidController,
+                    controller: controller.formController.rfidController,
                     decoration: const InputDecoration(
-                        label: Text('rfid'), border: OutlineInputBorder()),
+                      label: Text(labelRfid),
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                   const SizedBox(
                     height: 15,
                   ),
                   TextFormField(
-                    controller: controller.formcontroller.dpoController,
+                    controller: controller.formController.dpoController,
                     decoration: const InputDecoration(
-                        label: Text('dpo'), border: OutlineInputBorder()),
+                      label: Text(labelDpo),
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                 ],
               ),

@@ -2,19 +2,22 @@ import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_flutter_3/controllers/main_controller.dart';
+import 'package:test_flutter_3/models/form_label_model.dart';
 
 class MainSubmitBottom extends StatelessWidget {
   const MainSubmitBottom({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Main_controller>(
-      init: Main_controller(),
-      dispose: (state) {},
+    return GetBuilder<MainController>(
+      init: MainController(),
+      dispose: (state) {
+        state.controller?.formController.onClose();
+      },
       builder: (controller) {
         return ElevatedButton(
           onPressed: () {
-            if (controller.formcontroller.formKey.currentState!.validate()) {
+            if (controller.formController.formKey.currentState!.validate()) {
               // If the form is valid, display a snackbar. In the real world,
               // you'd often call a server or save the information in a database.
               ScaffoldMessenger.of(context).showSnackBar(
@@ -24,32 +27,32 @@ class MainSubmitBottom extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                          'รูปภาพ (path): ${controller.formcontroller.selectedImagePath} '),
+                          'รูปภาพ (path): ${controller.formController.selectedImagePath} '),
                       Text(
-                          'รูปภาพ (ขนาด): ${controller.formcontroller.selectedImageSize} '),
+                          'รูปภาพ (ขนาด): ${controller.formController.selectedImageSize} '),
                       Text(
-                          'แม่โค: ${controller.formcontroller.cowMomNameController.text} '),
+                          'แม่โค: ${controller.formController.cowMomNameController.text} '),
                       Text(
-                          'พ่อโค: ${controller.formcontroller.cowDadNameController.text} '),
+                          'พ่อโค: ${controller.formController.cowDadNameController.text} '),
                       Text(
-                          'เบอร์ลูกโค: ${controller.formcontroller.cowCodeController.text} '),
+                          'เบอร์ลูกโค: ${controller.formController.cowCodeController.text} '),
                       Text(
-                          'nid: ${controller.formcontroller.nidController.text} '),
+                          'nid: ${controller.formController.nidController.text} '),
                       Text(
-                          'rfid: ${controller.formcontroller.rfidController.text} '),
+                          'rfid: ${controller.formController.rfidController.text} '),
                       Text(
-                          'dpo: ${controller.formcontroller.dpoController.text} '),
+                          'dpo: ${controller.formController.dpoController.text} '),
                       Text(
-                          'ชื่อลูกโค: ${controller.formcontroller.cowNameController.text} '),
+                          'ชื่อลูกโค: ${controller.formController.cowNameController.text} '),
                       Text(
-                          'วันเกิดโค: ${controller.formcontroller.dateController.text} '),
-                      Text('อายุ: ${controller.formcontroller.age.value} วัน'),
-                      Text('เพศโค: ${controller.formcontroller.cowSex} '),
-                      Text('ประเภทโค: ${controller.formcontroller.cowType} '),
+                          'วันเกิดโค: ${controller.formController.dateController.text} '),
+                      Text('อายุ: ${controller.formController.age.value} วัน'),
+                      Text('เพศโค: ${controller.formController.cowSex} '),
+                      Text('ประเภทโค: ${controller.formController.cowType} '),
                       Text(
-                          'ข้อมูลสายพันธุ์: ${controller.formcontroller.breed} '),
-                      Text('โรงเรือน: ${controller.formcontroller.house} '),
-                      Text('ฝูง: ${controller.formcontroller.proportion} '),
+                          'ข้อมูลสายพันธุ์: ${controller.formController.breed} '),
+                      Text('โรงเรือน: ${controller.formController.house} '),
+                      Text('ฝูง: ${controller.formController.proportion} '),
                     ],
                   ),
                 ),
@@ -72,10 +75,12 @@ class MainSubmitBottom extends StatelessWidget {
             }
           },
           style: ElevatedButton.styleFrom(
-              //primary: Colors.pinkAccent,
-              backgroundColor: Colors.pinkAccent,
-              shape: BeveledRectangleBorder(
-                  borderRadius: BorderRadius.circular(5))),
+            //primary: Colors.pinkAccent,
+            backgroundColor: Colors.pinkAccent,
+            shape: BeveledRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+          ),
           // padding: const EdgeInsets.all(0.0),
           child: Container(
             padding: const EdgeInsets.only(top: 20.0, bottom: 20),
@@ -84,7 +89,7 @@ class MainSubmitBottom extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "ถัดไป",
+                  labelNextButton,
                   style: TextStyle(fontSize: 15.0, color: Colors.white),
                 ),
               ],

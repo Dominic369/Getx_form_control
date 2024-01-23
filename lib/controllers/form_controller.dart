@@ -3,10 +3,9 @@ import 'package:get/get.dart';
 import 'package:test_flutter_3/models/form_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-import 'package:flutter/widgets.dart';
 
 // ignore: camel_case_types
-class Form_controller extends GetxController {
+class FormController extends GetxController {
   final formKey = GlobalKey<FormState>();
 
   var selectedImagePath = FormModel().selectedImagePath.obs;
@@ -36,54 +35,8 @@ class Form_controller extends GetxController {
   TextEditingController cowNameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
 
-  var isVisible = false.obs;
+  //upload_cow_image
   var isVisibleImage = false.obs;
-  var breedText = 'สัดส่วน'.obs;
-
-  TextEditingController textarea1 = TextEditingController();
-  TextEditingController textarea2 = TextEditingController();
-
-  void daysBetween(DateTime from, DateTime to) {
-    from = DateTime(from.year, from.month, from.day);
-    to = DateTime(to.year, to.month, to.day);
-    age.value = (to.difference(from).inHours / 24).round();
-    update();
-  }
-
-  void changeBreed(var breed) {
-    if (breed == '5 สายพันธุ์') {
-      breedText.value = '5 สายพันธุ์';
-      setText();
-    } else if (breed == '8 สายพันธุ์') {
-      breedText.value = '8 สายพันธุ์';
-      setText();
-    } else if (breed == 'สัดส่วน') {
-      breedText.value = 'สัดส่วน';
-      resetText();
-    }
-
-    update();
-  }
-
-  void setText() {
-    textarea1.text = "โคดำ"; //set Text
-    textarea2.text = "100"; //set Text
-    breed.value = '100.0';
-    update();
-  }
-
-  void resetText() {
-    textarea1.text = "ไม่ทราบสายพันธุ์"; //default text
-    textarea2.text = "100"; //default text
-    breed.value = '100.0';
-    update();
-  }
-
-  void changeStatus() {
-    isVisible.value = !isVisible.value;
-    //print('isVisible : $isVisible');
-    update();
-  }
 
   void getImage(ImageSource imageSource) async {
     final pickedFile = await ImagePicker().pickImage(source: imageSource);
@@ -95,20 +48,66 @@ class Form_controller extends GetxController {
     } else {
       selectedImagePath.value = '';
     }
+
+    update();
+    Get.forceAppUpdate();
   }
 
   void clearImage() async {
     changeImageStatus();
     selectedImagePath.value = '';
     selectedImageSize.value = '';
+
+    update();
+    Get.forceAppUpdate();
   }
 
   void changeImageStatus() {
     isVisibleImage.value = !isVisibleImage.value;
     //print('isVisibleImage : $isVisibleImage');
-    update();
+    //update();
+    //Get.forceAppUpdate();
   }
 
+  //in_put_more_cow_code
+  var isVisible = false.obs;
+
+  void changeStatus() {
+    isVisible.value = !isVisible.value;
+    print('isVisible : $isVisible');
+    update();
+    Get.forceAppUpdate();
+  }
+
+  //cow_birth_date
+  void daysBetween(DateTime from, DateTime to) {
+    from = DateTime(from.year, from.month, from.day);
+    to = DateTime(to.year, to.month, to.day);
+    age.value = (to.difference(from).inHours / 24).round();
+    update();
+    Get.forceAppUpdate();
+  }
+
+  //cow_mix_breed
+  var breedText = 'สัดส่วน'.obs;
+
+  void changeBreed(var breed) {
+    if (breed == '5 สายพันธุ์') {
+      breedText.value = breed;
+      //breed.value = '100.0';
+    } else if (breed == '8 สายพันธุ์') {
+      breedText.value = breed;
+      //breed.value = '100.0';
+    } else if (breed == 'สัดส่วน') {
+      breedText.value = breed;
+      //breed.value = '100.0';
+    }
+
+    update();
+    Get.forceAppUpdate();
+  }
+
+  //cow_gender
   void changeCowSex(var cowsex) {
     if (cowsex == "male") {
       cowSex.value = 'male';
@@ -117,7 +116,6 @@ class Form_controller extends GetxController {
     }
 
     update();
+    Get.forceAppUpdate();
   }
-
-  void clearForm() {}
 }
