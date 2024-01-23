@@ -28,7 +28,10 @@ class CowParent extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
               validator: (value) {
-                return value?.isEmpty ?? true ? 'กรุณาระบุแม่โค' : null;
+                if (value == null || value.isEmpty || value == '') {
+                  return 'กรุณาระบุชื่อแม่โค';
+                }
+                return null;
               },
             ),
             const SizedBox(

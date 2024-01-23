@@ -16,9 +16,7 @@ class CowType extends StatelessWidget {
       builder: (controller) {
         return DropdownButtonFormField<String>(
           icon: const Icon(Icons.arrow_drop_down_circle_outlined),
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-          ),
+          decoration: const InputDecoration(border: OutlineInputBorder()),
           hint: const Text(labelCowtype),
           onChanged: (value) {
             controller.formController.cowType.value = value.toString();

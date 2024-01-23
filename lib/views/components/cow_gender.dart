@@ -59,9 +59,7 @@ class CowGender extends StatelessWidget {
                           ),
                           const Text(
                             cowGenderFemale,
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
+                            style: TextStyle(color: Colors.white),
                           ),
                         ],
                       ),
@@ -99,9 +97,7 @@ class CowGender extends StatelessWidget {
                           ),
                           const Text(
                             cowGenderMale,
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
+                            style: TextStyle(color: Colors.white),
                           ),
                         ],
                       ),

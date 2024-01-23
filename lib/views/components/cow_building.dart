@@ -15,15 +15,9 @@ class CowBuilding extends StatelessWidget {
       },
       builder: (controller) {
         return DropdownButtonFormField<String>(
-          icon: const Icon(
-            Icons.arrow_drop_down_circle_outlined,
-          ),
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-          ),
-          hint: const Text(
-            labelBuilding,
-          ),
+          icon: const Icon(Icons.arrow_drop_down_circle_outlined),
+          decoration: const InputDecoration(border: OutlineInputBorder()),
+          hint: const Text(labelBuilding),
           onChanged: (value) {
             controller.formController.house.value = value.toString();
           },
