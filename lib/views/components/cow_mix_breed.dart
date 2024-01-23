@@ -18,11 +18,12 @@ class CowMixBreed extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      controller.changeBreed('5 สายพันธุ์');
+                      controller.formcontroller.changeBreed('5 สายพันธุ์');
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor:
-                            controller.breedText.value == '5 สายพันธุ์'
+                            controller.formcontroller.breedText.value ==
+                                    '5 สายพันธุ์'
                                 ? Colors.blue
                                 : Colors.grey[350]),
                     child: const Row(
@@ -39,11 +40,12 @@ class CowMixBreed extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      controller.changeBreed('8 สายพันธุ์');
+                      controller.formcontroller.changeBreed('8 สายพันธุ์');
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor:
-                            controller.breedText.value == '8 สายพันธุ์'
+                            controller.formcontroller.breedText.value ==
+                                    '8 สายพันธุ์'
                                 ? Colors.blue
                                 : Colors.grey[350]),
                     child: const Row(
@@ -60,12 +62,14 @@ class CowMixBreed extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      controller.changeBreed('สัดส่วน');
+                      controller.formcontroller.changeBreed('สัดส่วน');
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: controller.breedText.value == 'สัดส่วน'
-                            ? Colors.pinkAccent
-                            : Colors.pinkAccent),
+                        backgroundColor:
+                            controller.formcontroller.breedText.value ==
+                                    'สัดส่วน'
+                                ? Colors.pinkAccent
+                                : Colors.pinkAccent),
                     child: const Row(
                       children: [
                         Icon(
@@ -90,7 +94,7 @@ class CowMixBreed extends StatelessWidget {
               height: 15,
             ),
             Container(
-              child: controller.breedText.value == 'สัดส่วน'
+              child: controller.formcontroller.breedText.value == 'สัดส่วน'
                   ? Row(
                       children: [
                         Flexible(

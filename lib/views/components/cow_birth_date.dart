@@ -56,7 +56,8 @@ class CowBirthDate extends StatelessWidget {
                 if (pickedDate != null) {
                   controller.formcontroller.dateController.text =
                       DateFormat('EEEE, MMM d, yyyy').format(pickedDate);
-                  controller.daysBetween(pickedDate, DateTime.now());
+                  controller.formcontroller
+                      .daysBetween(pickedDate, DateTime.now());
                 }
               },
             ),

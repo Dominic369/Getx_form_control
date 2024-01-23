@@ -14,7 +14,7 @@ class InputMoreCowCode extends StatelessWidget {
         return Column(
           children: [
             ElevatedButton(
-              onPressed: controller.changeStatus,
+              onPressed: controller.formcontroller.changeStatus,
               style: ElevatedButton.styleFrom(
                   //primary: Colors.green,
                   backgroundColor: Colors.green,
@@ -27,14 +27,15 @@ class InputMoreCowCode extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                        margin: const EdgeInsets.only(left: 1.0),
-                        child: const Text(
-                          "เบอร์ลูกโคเพิ่มเติม",
-                          style: TextStyle(fontSize: 15.0, color: Colors.white),
-                        )),
+                      margin: const EdgeInsets.only(left: 1.0),
+                      child: const Text(
+                        "เบอร์ลูกโคเพิ่มเติม",
+                        style: TextStyle(fontSize: 15.0, color: Colors.white),
+                      ),
+                    ),
                     Align(
                       alignment: Alignment.centerRight,
-                      child: controller.isVisible.value == false
+                      child: controller.formcontroller.isVisible.value == false
                           ? const Icon(
                               Icons.arrow_drop_up,
                               color: Colors.white,
@@ -50,7 +51,7 @@ class InputMoreCowCode extends StatelessWidget {
               height: 15,
             ),
             Visibility(
-              visible: controller.isVisible.value,
+              visible: controller.formcontroller.isVisible.value,
               child: Column(
                 children: [
                   TextFormField(

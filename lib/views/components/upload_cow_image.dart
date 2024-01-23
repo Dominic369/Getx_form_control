@@ -93,8 +93,9 @@ class UploadCowImage extends StatelessWidget {
                                                   ),
                                                 ),
                                                 onTap: () {
-                                                  controller.getImage(
-                                                      ImageSource.gallery);
+                                                  controller.formcontroller
+                                                      .getImage(
+                                                          ImageSource.gallery);
                                                 },
                                               ),
                                               const SizedBox(
@@ -114,8 +115,9 @@ class UploadCowImage extends StatelessWidget {
                                                 width: 150,
                                                 child: ElevatedButton(
                                                   onPressed: () {
-                                                    controller.getImage(
-                                                        ImageSource.camera);
+                                                    controller.formcontroller
+                                                        .getImage(
+                                                            ImageSource.camera);
                                                   },
                                                   style:
                                                       ElevatedButton.styleFrom(
@@ -193,7 +195,7 @@ class UploadCowImage extends StatelessWidget {
                   child: RawMaterialButton(
                     fillColor: Colors.red,
                     onPressed: () {
-                      controller.clearImage();
+                      controller.formcontroller.clearImage();
                     },
                     padding: const EdgeInsets.all(0),
                     shape: const CircleBorder(),
