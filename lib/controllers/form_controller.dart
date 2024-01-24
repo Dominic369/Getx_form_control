@@ -26,6 +26,15 @@ class FormController extends GetxController {
   var house = FormModel().house.obs;
   var masses = FormModel().masses.obs;
 
+  //upload_cow_image
+  var isVisibleImage = false.obs;
+
+  //cow_mix_breed
+  var breedText = 'สัดส่วน'.obs;
+
+  //in_put_more_cow_code
+  var isVisible = false.obs;
+
   TextEditingController cowMomNameController = TextEditingController();
   TextEditingController cowDadNameController = TextEditingController();
   TextEditingController cowCodeController = TextEditingController();
@@ -36,8 +45,6 @@ class FormController extends GetxController {
   TextEditingController dateController = TextEditingController();
 
   //upload_cow_image
-  var isVisibleImage = false.obs;
-
   void getImage(ImageSource imageSource) async {
     final pickedFile = await ImagePicker().pickImage(source: imageSource);
     if (pickedFile != null) {
@@ -70,8 +77,6 @@ class FormController extends GetxController {
   }
 
   //in_put_more_cow_code
-  var isVisible = false.obs;
-
   void changeStatus() {
     isVisible.value = !isVisible.value;
     print('isVisible : $isVisible');
@@ -89,8 +94,6 @@ class FormController extends GetxController {
   }
 
   //cow_mix_breed
-  var breedText = 'สัดส่วน'.obs;
-
   void changeBreed(var breed) {
     if (breed == '5 สายพันธุ์') {
       breedText.value = breed;
