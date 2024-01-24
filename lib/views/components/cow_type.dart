@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_flutter_3/controllers/main_controller.dart';
+import 'package:test_flutter_3/models/form_label_model.dart';
 
 class CowType extends StatelessWidget {
   const CowType({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Main_controller>(
-      init: Main_controller(),
-      dispose: (state) {},
+    return GetBuilder<MainController>(
+      init: MainController(),
+      dispose: (state) {
+        state.controller?.formController.onClose();
+      },
       builder: (controller) {
         return DropdownButtonFormField<String>(
           icon: const Icon(Icons.arrow_drop_down_circle_outlined),
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-          ),
-          hint: const Text('สถานะนำเข้า'),
+          decoration: const InputDecoration(border: OutlineInputBorder()),
+          hint: const Text(labelCowtype),
           onChanged: (value) {
-            controller.formcontroller.cowType.value = value.toString();
+            controller.formController.cowType.value = value.toString();
           },
           items: <String>[
             'ลูกโค',

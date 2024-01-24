@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_flutter_3/controllers/main_controller.dart';
+import 'package:test_flutter_3/models/form_label_model.dart';
 
 class CowName extends StatelessWidget {
   final GlobalKey<FormState> formkey;
@@ -8,14 +9,18 @@ class CowName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Main_controller>(
-      init: Main_controller(),
-      dispose: (state) {},
+    return GetBuilder<MainController>(
+      init: MainController(),
+      dispose: (state) {
+        state.controller?.formController.onClose();
+      },
       builder: (controller) {
         return TextFormField(
-          controller: controller.formcontroller.cowNameController,
+          controller: controller.formController.cowNameController,
           decoration: const InputDecoration(
-              label: Text('ชื่อลูกโค'), border: OutlineInputBorder()),
+            label: Text(labelCowName),
+            border: OutlineInputBorder(),
+          ),
           validator: (value) {
             if (value == null || value.isEmpty || value == '') {
               return 'กรุณาระบุชื่อลูกโค';

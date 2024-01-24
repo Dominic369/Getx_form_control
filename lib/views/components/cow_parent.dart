@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_flutter_3/controllers/main_controller.dart';
+import 'package:test_flutter_3/models/form_label_model.dart';
 
 class CowParent extends StatelessWidget {
   final GlobalKey<FormState> formkey;
@@ -9,9 +10,11 @@ class CowParent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Main_controller>(
-      init: Main_controller(),
-      dispose: (state) {},
+    return GetBuilder<MainController>(
+      init: MainController(),
+      dispose: (state) {
+        state.controller?.formController.onClose();
+      },
       builder: (controller) {
         return Column(
           children: [
@@ -19,22 +22,27 @@ class CowParent extends StatelessWidget {
               height: 15,
             ),
             TextFormField(
-              controller: controller.formcontroller.cowMomNameController,
+              controller: controller.formController.cowMomNameController,
               decoration: const InputDecoration(
-                labelText: 'ชื่อแม่โค',
+                labelText: labelMom,
                 border: OutlineInputBorder(),
               ),
               validator: (value) {
-                return value?.isEmpty ?? true ? 'กรุณาระบุแม่โค' : null;
+                if (value == null || value.isEmpty || value == '') {
+                  return 'กรุณาระบุชื่อแม่โค';
+                }
+                return null;
               },
             ),
             const SizedBox(
               height: 15,
             ),
             TextFormField(
-              controller: controller.formcontroller.cowDadNameController,
+              controller: controller.formController.cowDadNameController,
               decoration: const InputDecoration(
-                  label: Text('ชื่อพ่อโค'), border: OutlineInputBorder()),
+                label: Text(labelDad),
+                border: OutlineInputBorder(),
+              ),
               validator: (value) {
                 if (value == null || value.isEmpty || value == '') {
                   return 'กรุณาระบุชื่อพ่อโค';
