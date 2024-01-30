@@ -32,7 +32,10 @@ class CowMixBreed extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      controller.formController.changeBreed('5 สายพันธุ์');
+                      controller.formController.changeBreed(
+                        '5 สายพันธุ์',
+                        controller,
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor:
@@ -58,7 +61,10 @@ class CowMixBreed extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      controller.formController.changeBreed('8 สายพันธุ์');
+                      controller.formController.changeBreed(
+                        '8 สายพันธุ์',
+                        controller,
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor:
@@ -84,7 +90,10 @@ class CowMixBreed extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      controller.formController.changeBreed('สัดส่วน');
+                      controller.formController.changeBreed(
+                        'สัดส่วน',
+                        controller,
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor:

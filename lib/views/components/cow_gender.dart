@@ -32,7 +32,10 @@ class CowGender extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      controller.formController.changeCowSex('female');
+                      controller.formController.changeCowSex(
+                        'female',
+                        controller,
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor:
@@ -70,7 +73,10 @@ class CowGender extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      controller.formController.changeCowSex('male');
+                      controller.formController.changeCowSex(
+                        'male',
+                        controller,
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor:

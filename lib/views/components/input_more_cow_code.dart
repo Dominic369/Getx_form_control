@@ -17,7 +17,9 @@ class InputMoreCowCode extends StatelessWidget {
         return Column(
           children: [
             ElevatedButton(
-              onPressed: controller.formController.changeStatus,
+              onPressed: () {
+                controller.formController.changeStatus(controller);
+              },
               style: ElevatedButton.styleFrom(
                 //primary: Colors.green,
                 backgroundColor: Colors.green,

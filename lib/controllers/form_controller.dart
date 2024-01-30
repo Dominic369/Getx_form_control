@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:test_flutter_3/controllers/main_controller.dart';
 import 'package:test_flutter_3/models/form_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -45,7 +46,7 @@ class FormController extends GetxController {
   TextEditingController dateController = TextEditingController();
 
   //upload_cow_image
-  void getImage(ImageSource imageSource) async {
+  void getImage(ImageSource imageSource, MainController controller) async {
     final pickedFile = await ImagePicker().pickImage(source: imageSource);
     if (pickedFile != null) {
       changeImageStatus();
@@ -56,17 +57,17 @@ class FormController extends GetxController {
       selectedImagePath.value = '';
     }
 
-    update();
-    Get.forceAppUpdate();
+    controller.update();
+    //Get.forceAppUpdate();
   }
 
-  void clearImage() async {
+  void clearImage(MainController controller) async {
     changeImageStatus();
     selectedImagePath.value = '';
     selectedImageSize.value = '';
 
-    update();
-    Get.forceAppUpdate();
+    controller.update();
+    //Get.forceAppUpdate();
   }
 
   void changeImageStatus() {
@@ -77,24 +78,24 @@ class FormController extends GetxController {
   }
 
   //in_put_more_cow_code
-  void changeStatus() {
+  void changeStatus(MainController controller) {
     isVisible.value = !isVisible.value;
     print('isVisible : $isVisible');
-    update();
-    Get.forceAppUpdate();
+    controller.update();
+    //Get.forceAppUpdate();
   }
 
   //cow_birth_date
-  void daysBetween(DateTime from, DateTime to) {
+  void daysBetween(DateTime from, DateTime to, MainController controller) {
     from = DateTime(from.year, from.month, from.day);
     to = DateTime(to.year, to.month, to.day);
     age.value = (to.difference(from).inHours / 24).round();
-    update();
-    Get.forceAppUpdate();
+    controller.update();
+    //Get.forceAppUpdate();
   }
 
   //cow_mix_breed
-  void changeBreed(var breed) {
+  void changeBreed(var breed, MainController controller) {
     if (breed == '5 สายพันธุ์') {
       breedText.value = breed;
       //breed.value = '100.0';
@@ -106,19 +107,19 @@ class FormController extends GetxController {
       //breed.value = '100.0';
     }
 
-    update();
-    Get.forceAppUpdate();
+    controller.update();
+    //Get.forceAppUpdate();
   }
 
   //cow_gender
-  void changeCowSex(var cowsex) {
+  void changeCowSex(var cowsex, MainController controller) {
     if (cowsex == "male") {
       cowSex.value = 'male';
     } else if (cowsex == "female") {
       cowSex.value = 'female';
     }
 
-    update();
-    Get.forceAppUpdate();
+    controller.update();
+    //Get.forceAppUpdate();
   }
 }
